@@ -1,4 +1,4 @@
-import { FETCH_TASKS, FETCH_TASKS_ERROR, ADD_TASK, ADD_TASK_ERROR } from "./types";
+import { FETCH_TASKS, FETCH_TASKS_ERROR, ADD_TASK, ADD_TASK_ERROR, CLEAR_TASKS } from "./types";
 import axios from "axios";
 
 export const fetchTasks = () => async dispatch => {
@@ -36,3 +36,7 @@ export const addTask = task => async dispatch => {
         });
     }
 };
+
+export const clearTasks = () => ({
+    type: CLEAR_TASKS,
+});

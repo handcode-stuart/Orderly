@@ -9,7 +9,7 @@ import {
     LOGIN_FAIL,
     LOGOUT,
 } from "./types";
-import { fetchTasks } from "./task";
+import { fetchTasks, clearTasks } from "./task";
 import setAuthToken from "../utils/setAuthToken";
 
 // Load user
@@ -99,5 +99,6 @@ export const login = (email, password) => async dispatch => {
 
 // Logout / clear profile
 export const logout = () => dispatch => {
+    dispatch(clearTasks());
     dispatch({ type: LOGOUT });
 };

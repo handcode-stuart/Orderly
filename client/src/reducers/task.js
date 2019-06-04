@@ -1,4 +1,10 @@
-import { FETCH_TASKS, FETCH_TASKS_ERROR, ADD_TASK, ADD_TASK_ERROR } from "../actions/types";
+import {
+    FETCH_TASKS,
+    FETCH_TASKS_ERROR,
+    ADD_TASK,
+    ADD_TASK_ERROR,
+    CLEAR_TASKS,
+} from "../actions/types";
 
 const initialState = {
     tasks: [],
@@ -16,6 +22,11 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 tasks: payload,
+            };
+        case CLEAR_TASKS:
+            return {
+                ...state,
+                tasks: [],
             };
         case FETCH_TASKS_ERROR:
         case ADD_TASK_ERROR:
