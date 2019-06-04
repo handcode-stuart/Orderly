@@ -9,6 +9,7 @@ import {
     LOGIN_FAIL,
     LOGOUT,
 } from "./types";
+import { fetchTasks } from "./task";
 import setAuthToken from "../utils/setAuthToken";
 
 // Load user
@@ -23,6 +24,8 @@ export const loadUser = () => async dispatch => {
             type: USER_LOADED,
             payload: res.data,
         });
+
+        dispatch(fetchTasks());
     } catch (err) {
         dispatch({
             type: AUTH_ERROR,

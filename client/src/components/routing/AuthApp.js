@@ -1,16 +1,11 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
 
-import { fetchTasks } from "../../actions/task";
 import AuthHome from "../pages/auth/AuthHome";
 import AuthNav from "../layout/AuthNav";
 import Settings from "../pages/auth/Settings";
 
-const AuthApp = ({ fetchTasks }) => {
-    useEffect(() => {
-        fetchTasks();
-    }, []);
+const AuthApp = () => {
     return (
         <Fragment>
             <AuthNav />
@@ -23,7 +18,4 @@ const AuthApp = ({ fetchTasks }) => {
     );
 };
 
-export default connect(
-    null,
-    { fetchTasks },
-)(AuthApp);
+export default AuthApp;
