@@ -86,6 +86,38 @@ router.post(
 );
 
 /**
+ * @route   POST /api/v1/tasks/:id/complete
+ * @desc    Complete/incomplete a task
+ * @access  Private
+ */
+router.post(
+    "/:id/complete",
+    auth,
+    [check("completed", "The tasks completed value should be true or false").isBoolean()],
+    async (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
+
+        try {
+            const task = await Task.findById(req.params.id);
+
+            if (task.user.toString() !== req.user.id.toString()) {
+                return res.status(401).json({ msg: "User not authorised" });
+            }
+
+            task.completed = req.body.completed;
+
+            await task.save();
+
+            return res.json(task);
+        } catch (err) {
+            console.error(err.message);
+            return res.status(500).send("Server error");
+        }
+    },
+);
+
+/**
  * @route   POST /api/v1/tasks/{id}/project
  * @desc
  * @access

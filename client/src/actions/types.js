@@ -15,3 +15,5 @@ export const FETCH_TASKS_ERROR = "FETCH_TASKS_ERROR";
 export const ADD_TASK = "ADD_TASK";
 export const ADD_TASK_ERROR = "ADD_TASK_ERROR";
 export const CLEAR_TASKS = "CLEAR_TASKS";
+export const COMPLETE_TASK = "COMPLETE_TASK";
+export const COMPLETE_TASK_ERROR = "COMPLETE_TASK_ERROR";
