@@ -17,7 +17,7 @@ const Task = ({ completeTask, task }) => {
     };
 
     return (
-        <li>
+        <div className='c-task'>
             <form>
                 <input
                     type='checkbox'
@@ -27,7 +27,7 @@ const Task = ({ completeTask, task }) => {
                 />
                 {body}
             </form>
-        </li>
+        </div>
     );
 };
 

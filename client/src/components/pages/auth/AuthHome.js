@@ -5,7 +5,7 @@ import AllTasks from "../../task/AllTasks";
 const AuthHome = () => {
     return (
         <div>
-            <h1>Auth home</h1>
+            <h1>All tasks</h1>
             <AllTasks />
             <NewTaskForm />
         </div>

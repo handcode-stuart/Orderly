@@ -7,9 +7,11 @@ const AllTasks = ({ task: { tasks } }) => {
     return (
         <div>
             {tasks.length > 0 ? (
-                <ul>
+                <ul className='c-task-list'>
                     {tasks.map(task => (
-                        <Task key={task._id} task={task} />
+                        <li key={task._id}>
+                            <Task task={task} />
+                        </li>
                     ))}
                 </ul>
             ) : (
