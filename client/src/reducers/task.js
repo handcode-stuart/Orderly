@@ -45,8 +45,6 @@ export default function(state = initialState, action) {
                 }),
             };
         case DELETE_TASK:
-            console.log(payload);
-
             return {
                 ...state,
                 tasks: state.tasks.filter(task => task._id !== payload),
