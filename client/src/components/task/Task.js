@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { completeTask } from "../../actions/task";
+import { completeTask, deleteTask } from "../../actions/task";
 
-const Task = ({ completeTask, task }) => {
+const Task = ({ completeTask, deleteTask, task }) => {
     const [taskData, setTaskData] = useState(task);
 
     const { _id, body, completed } = taskData;
@@ -16,16 +16,26 @@ const Task = ({ completeTask, task }) => {
         });
     };
 
+    const handleDeleteTask = e => {
+        e.preventDefault();
+        deleteTask(_id);
+    };
+
     return (
         <div className='c-task'>
             <form>
-                <input
-                    type='checkbox'
-                    name='completed'
-                    onChange={e => onChange(e)}
-                    checked={completed}
-                />
-                {body}
+                <div>
+                    <input
+                        type='checkbox'
+                        name='completed'
+                        onChange={e => onChange(e)}
+                        checked={completed}
+                    />
+                    {body}
+                </div>
+                <div>
+                    <button onClick={e => handleDeleteTask(e)}>x</button>
+                </div>
             </form>
         </div>
     );
@@ -34,9 +44,10 @@ const Task = ({ completeTask, task }) => {
 Task.propTypes = {
     task: PropTypes.object.isRequired,
     completeTask: PropTypes.func.isRequired,
+    deleteTask: PropTypes.func.isRequired,
 };
 
 export default connect(
     null,
-    { completeTask },
+    { completeTask, deleteTask },
 )(Task);

@@ -6,6 +6,8 @@ import {
     CLEAR_TASKS,
     COMPLETE_TASK,
     COMPLETE_TASK_ERROR,
+    DELETE_TASK,
+    DELETE_TASK_ERROR,
 } from "../actions/types";
 
 const initialState = {
@@ -42,9 +44,17 @@ export default function(state = initialState, action) {
                     }
                 }),
             };
+        case DELETE_TASK:
+            console.log(payload);
+
+            return {
+                ...state,
+                tasks: state.tasks.filter(task => task._id !== payload),
+            };
         case FETCH_TASKS_ERROR:
         case ADD_TASK_ERROR:
         case COMPLETE_TASK_ERROR:
+        case DELETE_TASK_ERROR:
         default:
             return state;
     }

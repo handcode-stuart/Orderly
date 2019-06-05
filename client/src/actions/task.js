@@ -6,6 +6,8 @@ import {
     CLEAR_TASKS,
     COMPLETE_TASK,
     COMPLETE_TASK_ERROR,
+    DELETE_TASK,
+    DELETE_TASK_ERROR,
 } from "./types";
 import axios from "axios";
 
@@ -68,6 +70,21 @@ export const completeTask = (id, completed) => async dispatch => {
     } catch (err) {
         dispatch({
             type: COMPLETE_TASK_ERROR,
+        });
+    }
+};
+
+export const deleteTask = id => async dispatch => {
+    try {
+        await axios.delete(`/api/v1/tasks/${id}`);
+
+        dispatch({
+            type: DELETE_TASK,
+            payload: id,
+        });
+    } catch (err) {
+        dispatch({
+            type: DELETE_TASK_ERROR,
         });
     }
 };
