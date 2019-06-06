@@ -5,7 +5,7 @@ import { toggleSidebar } from "../../../actions/view";
 
 const AuthNav = ({ view, toggleSidebar }) => {
     return (
-        <div>
+        <div className='o-container'>
             <span onClick={() => toggleSidebar(view.sidebar_open)}>Open</span>
         </div>
     );
