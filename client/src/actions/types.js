@@ -19,3 +19,7 @@ export const COMPLETE_TASK = "COMPLETE_TASK";
 export const COMPLETE_TASK_ERROR = "COMPLETE_TASK_ERROR";
 export const DELETE_TASK = "DELETE_TASK";
 export const DELETE_TASK_ERROR = "DELETE_TASK_ERROR";
+
+// View
+export const OPEN_SIDEBAR = "OPEN_SIDEBAR";
+export const CLOSE_SIDEBAR = "CLOSE_SIDEBAR";

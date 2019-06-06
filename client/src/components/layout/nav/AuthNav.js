@@ -1,38 +1,26 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { logout } from "../../../actions/auth";
+import { connect } from "react-redux";
+import { toggleSidebar } from "../../../actions/view";
 
-const AuthNav = ({ logout }) => {
+const AuthNav = ({ view, toggleSidebar }) => {
     return (
-        <div className='c-nav'>
-            <div className='o-container  c-nav__container'>
-                <ul>
-                    <li>
-                        <Link to='/'>Home</Link>
-                    </li>
-                </ul>
-                <ul>
-                    <li>
-                        <Link to='/settings'>Settings</Link>
-                    </li>
-                    <li>
-                        <a href='#!' onClick={logout}>
-                            Logout
-                        </a>
-                    </li>
-                </ul>
-            </div>
+        <div>
+            <span onClick={() => toggleSidebar(view.sidebar_open)}>Open</span>
         </div>
     );
 };
 
 AuthNav.propTypes = {
-    logout: PropTypes.func.isRequired,
+    view: PropTypes.object.isRequired,
+    toggleSidebar: PropTypes.func.isRequired,
 };
 
+const mapStateToProps = state => ({
+    view: state.view,
+});
+
 export default connect(
-    null,
-    { logout },
+    mapStateToProps,
+    { toggleSidebar },
 )(AuthNav);
