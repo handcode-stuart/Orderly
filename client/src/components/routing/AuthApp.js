@@ -11,13 +11,11 @@ const AuthApp = () => {
         <Fragment>
             <AuthNav />
             <Sidebar />
-            <div className='o-container'>
-                <Switch>
-                    <Route exact path='/' component={AuthHome} />
-                    <Route path='/settings' component={Settings} />
-                    <Route render={() => <Redirect to='/' />} />
-                </Switch>
-            </div>
+            <Switch>
+                <Route exact path='/' component={AuthHome} />
+                <Route path='/settings' component={Settings} />
+                <Route render={() => <Redirect to='/' />} />
+            </Switch>
         </Fragment>
     );
 };

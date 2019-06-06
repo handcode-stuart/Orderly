@@ -24,14 +24,14 @@ const Task = ({ completeTask, deleteTask, task }) => {
     return (
         <div className='c-task'>
             <form>
-                <div>
+                <div className='c-task__form-group'>
                     <input
                         type='checkbox'
                         name='completed'
                         onChange={e => onChange(e)}
                         checked={completed}
                     />
-                    {body}
+                    <p>{body}</p>
                 </div>
                 <div>
                     <button onClick={e => handleDeleteTask(e)}>x</button>
