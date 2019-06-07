@@ -15,18 +15,15 @@ const Sidebar = ({ logout, auth, view, toggleSidebar }) => {
     }, [view.sidebar_open]);
 
     return (
-        <div className={openState ? "c-sidebar  active" : "c-sidebar"}>
-            <div
-                className='c-sidebar__close-btn'
-                onClick={() => toggleSidebar(view.sidebar_open)}
-            />
-            <div className='c-sidebar__bg' />
-            <div className='c-sidebar__content'>
+        <div className={openState ? "sidebar  active" : "sidebar"}>
+            <div className='sidebar__close-btn' onClick={() => toggleSidebar(view.sidebar_open)} />
+            <div className='sidebar__bg' />
+            <div className='sidebar__content'>
                 <div>
                     <UserTag user={auth.user} />
                     <SidebarMenu />
                 </div>
-                <div className='c-sidebar__logout'>
+                <div className='sidebar__logout'>
                     <a href='#!' onClick={logout}>
                         Logout
                     </a>

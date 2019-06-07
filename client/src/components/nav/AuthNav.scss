@@ -1,0 +1,9 @@
+.auth-nav {
+    padding: 20px 0;
+
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}

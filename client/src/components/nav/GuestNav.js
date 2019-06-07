@@ -4,8 +4,8 @@ import "./GuestNav.scss";
 
 const GuestNav = () => {
     return (
-        <div className='c-guest-nav'>
-            <div className='o-container  c-guest-nav__container'>
+        <div className='guest-nav'>
+            <div className='o-container  guest-nav__container'>
                 <ul>
                     <li>
                         <Link to='/'>Home</Link>

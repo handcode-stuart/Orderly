@@ -23,9 +23,9 @@ const TaskItem = ({ completeTask, deleteTask, task }) => {
     };
 
     return (
-        <div className='c-task-item'>
+        <div className='task-item'>
             <form>
-                <div className='c-task-item__form-group'>
+                <div className='task-item__form-group'>
                     <input
                         type='checkbox'
                         name='completed'

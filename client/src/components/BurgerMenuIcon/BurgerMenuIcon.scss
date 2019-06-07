@@ -1,0 +1,23 @@
+.burger-menu-icon {
+    width: 25px;
+    height: 17px;
+    position: relative;
+
+    span {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: #eee;
+
+        &:nth-child(2) {
+            top: 7px;
+        }
+
+        &:last-child {
+            top: 14px;
+        }
+    }
+}

@@ -20,7 +20,7 @@ const NewTaskForm = ({ addTask }) => {
     };
 
     return (
-        <form className='c-new-task-form' onSubmit={e => onSubmit(e)}>
+        <form className='new-task-form' onSubmit={e => onSubmit(e)}>
             <input type='text' name='body' value={body} onChange={e => onChange(e)} />
             <input type='submit' value='Add task' />
         </form>

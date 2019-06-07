@@ -2,7 +2,7 @@ import React from "react";
 
 const SidebarMenu = () => {
     return (
-        <ul className='c-sidebar__menu'>
+        <ul className='sidebar__menu'>
             <li>
                 <span />
                 <p>All tasks</p>
