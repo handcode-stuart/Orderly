@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 import AuthApp from "./AuthApp";
 import GuestApp from "./GuestApp";
-import Spinner from "../layout/Spinner";
+import Spinner from "../components/Spinner/Spinner";
 
 const RouteMapper = ({ auth: { isAuthenticated, loading } }) => {
     return (

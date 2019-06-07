@@ -1,16 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import Task from "./Task";
+import TaskItem from "../TaskItem/TaskItem";
+import "./TaskList.scss";
 
-const AllTasks = ({ task: { tasks } }) => {
+const TaskList = ({ task: { tasks } }) => {
     return (
         <div>
             {tasks.length > 0 ? (
                 <ul className='c-task-list'>
                     {tasks.map(task => (
                         <li key={task._id}>
-                            <Task task={task} />
+                            <TaskItem task={task} />
                         </li>
                     ))}
                 </ul>
@@ -21,7 +22,7 @@ const AllTasks = ({ task: { tasks } }) => {
     );
 };
 
-AllTasks.propTypes = {
+TaskList.propTypes = {
     task: PropTypes.object.isRequired,
 };
 
@@ -29,4 +30,4 @@ const mapStateToProps = state => ({
     task: state.task,
 });
 
-export default connect(mapStateToProps)(AllTasks);
+export default connect(mapStateToProps)(TaskList);

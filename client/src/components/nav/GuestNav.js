@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./GuestNav.scss";
 
 const GuestNav = () => {
     return (
-        <div className='c-nav'>
-            <div className='o-container  c-nav__container'>
+        <div className='c-guest-nav'>
+            <div className='o-container  c-guest-nav__container'>
                 <ul>
                     <li>
                         <Link to='/'>Home</Link>

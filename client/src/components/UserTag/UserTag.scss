@@ -1,0 +1,20 @@
+.c-user-tag {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    span {
+        display: block;
+        width: 33px;
+        height: 33px;
+        border-radius: 50%;
+        background-color: #eee;
+        margin-right: 11px;
+    }
+
+    p {
+        font-weight: 700;
+        font-size: 14px;
+        color: #4d4d4d;
+    }
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { toggleSidebar } from "../../../actions/view";
+import { toggleSidebar } from "../../actions/view";
 
 const AuthNav = ({ view, toggleSidebar }) => {
     return (

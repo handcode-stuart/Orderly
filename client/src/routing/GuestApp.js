@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 
 import GuestHome from "../pages/guest/GuestHome";
-import GuestNav from "../layout/nav/GuestNav";
+import GuestNav from "../components/nav/GuestNav";
 import Login from "../pages/guest/Login";
 import Register from "../pages/guest/Register";
 

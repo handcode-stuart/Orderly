@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import UserTag from "./UserTag";
+import UserTag from "../UserTag/UserTag";
 import SidebarMenu from "./SidebarMenu";
-import { logout } from "../../../actions/auth";
-import { toggleSidebar } from "../../../actions/view";
+import { logout } from "../../actions/auth";
+import { toggleSidebar } from "../../actions/view";
+import "./Sidebar.scss";
 
 const Sidebar = ({ logout, auth, view, toggleSidebar }) => {
     const [openState, setOpenState] = useState(false);

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { completeTask, deleteTask } from "../../actions/task";
+import { completeTask, deleteTask } from "../../../actions/task";
+import "./TaskItem.scss";
 
-const Task = ({ completeTask, deleteTask, task }) => {
+const TaskItem = ({ completeTask, deleteTask, task }) => {
     const [taskData, setTaskData] = useState(task);
 
     const { _id, body, completed } = taskData;
@@ -22,9 +23,9 @@ const Task = ({ completeTask, deleteTask, task }) => {
     };
 
     return (
-        <div className='c-task'>
+        <div className='c-task-item'>
             <form>
-                <div className='c-task__form-group'>
+                <div className='c-task-item__form-group'>
                     <input
                         type='checkbox'
                         name='completed'
@@ -41,7 +42,7 @@ const Task = ({ completeTask, deleteTask, task }) => {
     );
 };
 
-Task.propTypes = {
+TaskItem.propTypes = {
     task: PropTypes.object.isRequired,
     completeTask: PropTypes.func.isRequired,
     deleteTask: PropTypes.func.isRequired,
@@ -50,4 +51,4 @@ Task.propTypes = {
 export default connect(
     null,
     { completeTask, deleteTask },
-)(Task);
+)(TaskItem);

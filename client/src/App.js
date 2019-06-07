@@ -5,7 +5,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import "./App.scss";
 
 import { loadUser } from "./actions/auth";
-import RouteMapper from "./components/routing/RouteMapper";
+import RouteMapper from "./routing/RouteMapper";
 import setAuthToken from "./utils/setAuthToken";
 import store from "./store";
 
