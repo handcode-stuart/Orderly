@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { completeTask, deleteTask } from "../../../actions/task";
+import { completeTask, deleteTask } from "../../actions/task";
 import "./TaskItem.scss";
 
 const TaskItem = ({ completeTask, deleteTask, task }) => {

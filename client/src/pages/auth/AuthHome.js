@@ -1,6 +1,6 @@
 import React from "react";
-import NewTaskForm from "../../components/task/NewTaskForm/NewTaskForm";
-import TaskList from "../../components/task/TaskList/TaskList";
+import NewTaskForm from "../../components/NewTaskForm/NewTaskForm";
+import TaskList from "../../components/TaskList/TaskList";
 import PageHeader from "../../components/PageHeader/PageHeader";
 
 const AuthHome = () => {

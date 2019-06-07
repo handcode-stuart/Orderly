@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { addTask } from "../../../actions/task";
+import { addTask } from "../../actions/task";
 import PropTypes from "prop-types";
 import "./NewTaskForm.scss";
 
