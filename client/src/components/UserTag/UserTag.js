@@ -7,7 +7,7 @@ const UserTag = ({ user }) => {
     return (
         <div className='user-tag'>
             <UserProfileBubble />
-            <p>Hi, {user.name}!</p>
+            <p>Hi, {user && user.name}!</p>
         </div>
     );
 };
