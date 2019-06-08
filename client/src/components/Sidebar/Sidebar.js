@@ -21,7 +21,7 @@ const Sidebar = ({ logout, auth, view, toggleSidebar }) => {
             <div className='sidebar__content'>
                 <div>
                     <UserTag user={auth.user} />
-                    <SidebarMenu />
+                    <SidebarMenu handleLinkClick={() => toggleSidebar(true)} />
                 </div>
                 <div className='sidebar__logout'>
                     <a href='#!' onClick={logout}>

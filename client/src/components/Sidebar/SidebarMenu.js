@@ -1,27 +1,40 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-const SidebarMenu = () => {
+const SidebarMenu = ({ handleLinkClick }) => {
     return (
         <ul className='sidebar__menu'>
             <li>
-                <span />
-                <Link to='/'>All tasks</Link>
+                <Link to='/' onClick={() => handleLinkClick()}>
+                    <span />
+                    <p>All tasks</p>
+                </Link>
             </li>
             <li>
-                <span />
-                <Link to='/projects'>Projects</Link>
+                <Link to='/projects' onClick={() => handleLinkClick()}>
+                    <span />
+                    <p>Projects</p>
+                </Link>
             </li>
             <li>
-                <span />
-                <Link to='/labels'>Labels</Link>
+                <Link to='/labels' onClick={() => handleLinkClick()}>
+                    <span />
+                    <p>Labels</p>
+                </Link>
             </li>
             <li>
-                <span />
-                <Link to='/settings'>Settings</Link>
+                <Link to='/settings' onClick={() => handleLinkClick()}>
+                    <span />
+                    <p>Settings</p>
+                </Link>
             </li>
         </ul>
     );
+};
+
+SidebarMenu.propTypes = {
+    handleLinkClick: PropTypes.func.isRequired,
 };
 
 export default SidebarMenu;
