@@ -1,23 +1,24 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const SidebarMenu = () => {
     return (
         <ul className='sidebar__menu'>
             <li>
                 <span />
-                <p>All tasks</p>
+                <Link to='/'>All tasks</Link>
             </li>
             <li>
                 <span />
-                <p>Projects</p>
+                <Link to='/projects'>Projects</Link>
             </li>
             <li>
                 <span />
-                <p>Labels</p>
+                <Link to='/labels'>Labels</Link>
             </li>
             <li>
                 <span />
-                <p>Settings</p>
+                <Link to='/settings'>Settings</Link>
             </li>
         </ul>
     );

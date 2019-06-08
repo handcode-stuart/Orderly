@@ -1,12 +1,12 @@
 import React from "react";
 import PageHeader from "../../components/PageHeader/PageHeader";
 
-const Settings = () => {
+const Labels = () => {
     return (
         <div>
-            <PageHeader title='Settings' />
+            <PageHeader title='Labels' />
         </div>
     );
 };
 
-export default Settings;
+export default Labels;

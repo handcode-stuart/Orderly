@@ -1,12 +1,12 @@
 import React from "react";
 import PageHeader from "../../components/PageHeader/PageHeader";
 
-const Settings = () => {
+const Projects = () => {
     return (
         <div>
-            <PageHeader title='Settings' />
+            <PageHeader title='Projects' />
         </div>
     );
 };
 
-export default Settings;
+export default Projects;
