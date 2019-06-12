@@ -23,7 +23,7 @@ const TaskItem = ({ completeTask, deleteTask, task }) => {
     };
 
     return (
-        <li className='task-item'>
+        <li className={completed ? "task-item  checked" : "task-item"}>
             <div className='task-item__wrapper'>
                 <div className='task-item__form-group'>
                     <span onClick={e => onCompleteClick()} className={completed ? "checked" : ""} />
