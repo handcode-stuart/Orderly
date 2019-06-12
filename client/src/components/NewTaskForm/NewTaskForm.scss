@@ -18,6 +18,12 @@
         font-size: 18px;
         color: #f0f0f0;
         outline: none;
+        resize: none;
+        vertical-align: top;
+
+        &::placeholder {
+            color: #f0f0f0;
+        }
     }
 
     button {
@@ -30,5 +36,23 @@
         border-radius: 25px;
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
         transition: background-color 100ms ease-in-out;
+    }
+
+    &__actions {
+        background-color: #434455;
+        padding: 23px 14px;
+
+        span {
+            margin-right: 9px;
+            font-size: 18px;
+
+            &.labels {
+                color: #f4b9b9;
+            }
+
+            &.priority {
+                color: #cbf4e4;
+            }
+        }
     }
 }

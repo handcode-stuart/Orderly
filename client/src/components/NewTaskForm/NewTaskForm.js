@@ -6,10 +6,11 @@ import { toggleNewTaskForm } from "../../actions/view";
 import "./NewTaskForm.scss";
 
 const NewTaskForm = ({ view: { new_task_form_open }, addTask, toggleNewTaskForm }) => {
-    const ref = createRef();
     const [taskData, setTaskData] = useState({
         body: "",
     });
+
+    const ref = createRef();
 
     useEffect(() => ref.current.focus(), [ref]);
 
@@ -25,7 +26,17 @@ const NewTaskForm = ({ view: { new_task_form_open }, addTask, toggleNewTaskForm 
 
     return (
         <div className={new_task_form_open ? "new-task-form  active" : "new-task-form"}>
-            <textarea ref={ref} name='body' value={body} onChange={e => onChange(e)} />
+            <textarea
+                ref={ref}
+                name='body'
+                value={body}
+                onChange={e => onChange(e)}
+                placeholder='Your task...'
+            />
+            <div className='new-task-form__actions'>
+                <span className='labels'>@</span>
+                <span className='priority'>!!!</span>
+            </div>
             <button onClick={e => onSubmit()} />
         </div>
     );
