@@ -11,14 +11,13 @@ const NewTaskForm = ({ view: { new_task_form_open }, addTask, toggleNewTaskForm 
         body: "",
     });
 
-    useEffect(() => ref.current.focus(), []);
+    useEffect(() => ref.current.focus(), [ref]);
 
     const { body } = taskData;
 
     const onChange = e => setTaskData({ body: e.target.value });
 
-    const onSubmit = e => {
-        e.preventDefault();
+    const onSubmit = () => {
         addTask(taskData);
         setTaskData({ body: "" });
         toggleNewTaskForm(new_task_form_open);
@@ -26,10 +25,8 @@ const NewTaskForm = ({ view: { new_task_form_open }, addTask, toggleNewTaskForm 
 
     return (
         <div className={new_task_form_open ? "new-task-form  active" : "new-task-form"}>
-            <form onSubmit={e => onSubmit(e)}>
-                <textarea ref={ref} name='body' value={body} onChange={e => onChange(e)} />
-                <input type='submit' value='Add task' />
-            </form>
+            <textarea ref={ref} name='body' value={body} onChange={e => onChange(e)} />
+            <button onClick={e => onSubmit()} />
         </div>
     );
 };
