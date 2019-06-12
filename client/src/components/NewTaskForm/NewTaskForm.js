@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, createRef } from "react";
 import { connect } from "react-redux";
 import { addTask } from "../../actions/task";
 import PropTypes from "prop-types";
 import "./NewTaskForm.scss";
 
 const NewTaskForm = ({ view, addTask }) => {
+    const ref = createRef();
     const [taskData, setTaskData] = useState({
         body: "",
     });
+
+    useEffect(() => ref.current.focus(), []);
 
     const { body } = taskData;
 
@@ -22,7 +25,7 @@ const NewTaskForm = ({ view, addTask }) => {
     return (
         <div className={view.new_task_form_open ? "new-task-form  active" : "new-task-form"}>
             <form onSubmit={e => onSubmit(e)}>
-                <textarea name='body' value={body} onChange={e => onChange(e)} />
+                <textarea ref={ref} name='body' value={body} onChange={e => onChange(e)} />
                 <input type='submit' value='Add task' />
             </form>
         </div>

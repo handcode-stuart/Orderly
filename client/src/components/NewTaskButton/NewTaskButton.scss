@@ -7,7 +7,7 @@
     background-color: #cbf4e4;
     border-radius: 25px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-    transition: right 250ms ease-in-out, transform 250ms ease-in-out;
+    transition: right 100ms ease-in-out, transform 100ms ease-in-out;
 
     &.active {
         right: 50%;
