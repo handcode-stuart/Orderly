@@ -26,6 +26,7 @@ const NewTaskForm = ({ view: { new_task_form_open }, addTask, toggleNewTaskForm 
 
     return (
         <div className={new_task_form_open ? "new-task-form  active" : "new-task-form"}>
+            <div className='new-task-form__bg' />
             <textarea
                 ref={ref}
                 name='body'
