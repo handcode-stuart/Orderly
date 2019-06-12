@@ -9,7 +9,7 @@ const TaskItem = ({ completeTask, deleteTask, task }) => {
 
     const { _id, body, completed } = taskData;
 
-    const onChange = e => {
+    const onCompleteClick = e => {
         completeTask(_id, !completed);
         setTaskData({
             ...taskData,
@@ -23,22 +23,20 @@ const TaskItem = ({ completeTask, deleteTask, task }) => {
     };
 
     return (
-        <div className='task-item'>
-            <form>
+        <li className='task-item'>
+            <div className='task-item__wrapper'>
                 <div className='task-item__form-group'>
-                    <input
-                        type='checkbox'
-                        name='completed'
-                        onChange={e => onChange(e)}
-                        checked={completed}
-                    />
+                    <span onClick={e => onCompleteClick()} className={completed ? "checked" : ""} />
                     <p>{body}</p>
                 </div>
-                <div>
-                    <button onClick={e => handleDeleteTask(e)}>x</button>
+                <div className='task-item__actions'>
+                    <span className='project' onClick={e => handleDeleteTask(e)} />
+                    <span className='labels' onClick={e => handleDeleteTask(e)} />
+                    <span className='edit' onClick={e => handleDeleteTask(e)} />
+                    <span className='delete' onClick={e => handleDeleteTask(e)} />
                 </div>
-            </form>
-        </div>
+            </div>
+        </li>
     );
 };
 

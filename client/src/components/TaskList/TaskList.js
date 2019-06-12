@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import TaskItem from "../TaskItem/TaskItem";
+import NoTasks from "../TaskItem/NoTasks";
 import "./TaskList.scss";
 
 const TaskList = ({ task: { tasks } }) => {
@@ -10,13 +11,13 @@ const TaskList = ({ task: { tasks } }) => {
             {tasks.length > 0 ? (
                 <ul className='task-list'>
                     {tasks.map(task => (
-                        <li key={task._id}>
-                            <TaskItem task={task} />
-                        </li>
+                        <TaskItem key={task._id} task={task} />
                     ))}
                 </ul>
             ) : (
-                "Sorry, no tasks yet"
+                <ul className='task-list'>
+                    <NoTasks />
+                </ul>
             )}
         </div>
     );

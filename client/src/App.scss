@@ -1,5 +1,13 @@
 // This will be replaced with styled-components
 
+$color-blue-light: #65a3d1;
+$color-blue: #434455;
+$color-blue-dark: #3e3f4e;
+$color-pink: #f4b9b9;
+$color-mint: #cbf4e4;
+$color-red: #ea4141;
+$color-white: #f0f0f0;
+
 * {
     box-sizing: border-box;
     -webkit-user-select: none;
@@ -12,6 +20,7 @@ body {
     font-family: "Lato", sans-serif;
     padding: 0;
     margin: 0;
+    background-color: #3e3f4e;
 }
 
 .o-container {
