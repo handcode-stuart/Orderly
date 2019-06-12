@@ -7,6 +7,7 @@ import Labels from "../pages/auth/Labels";
 import Settings from "../pages/auth/Settings";
 import Sidebar from "../components/Sidebar/Sidebar";
 import AuthNav from "../components/nav/AuthNav";
+import NewTaskButton from "../components/NewTaskButton/NewTaskButton";
 
 const AuthApp = () => {
     return (
@@ -20,6 +21,7 @@ const AuthApp = () => {
                 <Route path='/settings' component={Settings} />
                 <Route render={() => <Redirect to='/' />} />
             </Switch>
+            <NewTaskButton />
         </Fragment>
     );
 };
