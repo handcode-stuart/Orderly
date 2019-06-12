@@ -2,9 +2,10 @@ import React, { useEffect, useState, createRef } from "react";
 import { connect } from "react-redux";
 import { addTask } from "../../actions/task";
 import PropTypes from "prop-types";
+import { toggleNewTaskForm } from "../../actions/view";
 import "./NewTaskForm.scss";
 
-const NewTaskForm = ({ view, addTask }) => {
+const NewTaskForm = ({ view: { new_task_form_open }, addTask, toggleNewTaskForm }) => {
     const ref = createRef();
     const [taskData, setTaskData] = useState({
         body: "",
@@ -20,10 +21,11 @@ const NewTaskForm = ({ view, addTask }) => {
         e.preventDefault();
         addTask(taskData);
         setTaskData({ body: "" });
+        toggleNewTaskForm(new_task_form_open);
     };
 
     return (
-        <div className={view.new_task_form_open ? "new-task-form  active" : "new-task-form"}>
+        <div className={new_task_form_open ? "new-task-form  active" : "new-task-form"}>
             <form onSubmit={e => onSubmit(e)}>
                 <textarea ref={ref} name='body' value={body} onChange={e => onChange(e)} />
                 <input type='submit' value='Add task' />
@@ -34,6 +36,7 @@ const NewTaskForm = ({ view, addTask }) => {
 
 NewTaskForm.propTypes = {
     addTask: PropTypes.func.isRequired,
+    toggleNewTaskForm: PropTypes.func.isRequired,
     view: PropTypes.object.isRequired,
 };
 
@@ -43,5 +46,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { addTask },
+    { addTask, toggleNewTaskForm },
 )(NewTaskForm);

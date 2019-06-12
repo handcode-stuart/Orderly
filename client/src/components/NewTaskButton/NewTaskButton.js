@@ -4,11 +4,11 @@ import { connect } from "react-redux";
 import { toggleNewTaskForm } from "../../actions/view";
 import PropTypes from "prop-types";
 
-const NewTaskButton = ({ view, toggleNewTaskForm }) => {
+const NewTaskButton = ({ view: { new_task_form_open }, toggleNewTaskForm }) => {
     return (
         <div
-            className={view.new_task_form_open ? "new-task-button  active" : "new-task-button"}
-            onClick={e => toggleNewTaskForm(view.new_task_form_open)}
+            className={new_task_form_open ? "new-task-button  active" : "new-task-button"}
+            onClick={e => toggleNewTaskForm(new_task_form_open)}
         />
     );
 };
