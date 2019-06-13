@@ -24,6 +24,12 @@ const SidebarMenu = ({ handleLinkClick }) => {
                 </Link>
             </li>
             <li>
+                <Link to='/completed' onClick={() => handleLinkClick()}>
+                    <span />
+                    <p>Completed</p>
+                </Link>
+            </li>
+            <li>
                 <Link to='/settings' onClick={() => handleLinkClick()}>
                     <span />
                     <p>Settings</p>
