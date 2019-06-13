@@ -10,9 +10,7 @@ const TaskList = ({ task: { tasks } }) => {
         <div>
             {tasks.length > 0 ? (
                 <ul className='task-list'>
-                    {tasks.map(task => (
-                        <TaskItem key={task._id} task={task} />
-                    ))}
+                    {tasks.map(task => !task.completed && <TaskItem key={task._id} task={task} />)}
                 </ul>
             ) : (
                 <ul className='task-list'>
