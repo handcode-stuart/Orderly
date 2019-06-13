@@ -5,12 +5,25 @@ import TaskItem from "../TaskItem/TaskItem";
 import NoTasks from "../TaskItem/NoTasks";
 import "./TaskList.scss";
 
-const TaskList = ({ task: { tasks } }) => {
+const TaskList = ({ task: { tasks }, filter }) => {
+    // Current use case for multiple filters is OR, not AND
+    const filteredTasks = () => {
+        let filteredTasks = [];
+        filter.forEach(filter => {
+            const key = Object.keys(filter)[0];
+            const value = filter[key];
+            tasks.map(task => task[key] === value && filteredTasks.push(task));
+        });
+        return [...new Set(filteredTasks)];
+    };
+
     return (
         <div>
             {tasks.length > 0 ? (
                 <ul className='task-list'>
-                    {tasks.map(task => !task.completed && <TaskItem key={task._id} task={task} />)}
+                    {filter
+                        ? filteredTasks().map(task => <TaskItem key={task._id} task={task} />)
+                        : tasks.map(task => <TaskItem key={task._id} task={task} />)}
                 </ul>
             ) : (
                 <ul className='task-list'>
@@ -23,6 +36,7 @@ const TaskList = ({ task: { tasks } }) => {
 
 TaskList.propTypes = {
     task: PropTypes.object.isRequired,
+    filter: PropTypes.array,
 };
 
 const mapStateToProps = state => ({

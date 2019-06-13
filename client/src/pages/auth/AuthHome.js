@@ -7,7 +7,7 @@ const AuthHome = () => {
     return (
         <div>
             <PageHeader title='All tasks' />
-            <TaskList />
+            <TaskList filter={[{ completed: false }]} />
         </div>
     );
 };
