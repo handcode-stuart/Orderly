@@ -25,12 +25,20 @@
             align-items: center;
         }
 
+        .task-item__completed-box {
+            width: 17px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex: 1;
+            margin-right: 15px;
+        }
+
         span {
             width: 17px;
             height: 17px;
             border: 2px solid #f0f0f0;
             border-radius: 100%;
-            margin-right: 15px;
 
             &.checked {
                 background-color: #65a3d1;
