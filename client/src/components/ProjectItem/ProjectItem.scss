@@ -1,0 +1,71 @@
+.project-item {
+    padding: 12px 20px;
+    font-size: 18px;
+    margin-bottom: 5px;
+    background-color: #3e3f4e;
+    opacity: 1;
+    transition: opacity 100ms ease-in-out;
+
+    &:nth-child(even) {
+        background-color: #434455;
+    }
+
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .project-item__form-group {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .project-item__project-colour {
+            width: 17px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex: 1;
+            margin-right: 15px;
+        }
+
+        span {
+            width: 17px;
+            height: 17px;
+            background-color: #f0f0f0;
+            border-radius: 100%;
+        }
+
+        p {
+            font-size: 14px;
+            color: #f0f0f0;
+        }
+    }
+
+    &__actions {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        span {
+            margin-right: 0;
+            margin-left: 15px;
+            border: 2px solid #f0f0f0;
+            background-color: rgba(0, 0, 0, 0);
+
+            &.project {
+                border-color: #65a3d1;
+            }
+            &.labels {
+                border-color: #cbf4e4;
+            }
+            &.edit {
+                border-color: #f4b9b9;
+            }
+            &.delete {
+                border-color: #ea4141;
+            }
+        }
+    }
+}

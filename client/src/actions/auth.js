@@ -9,6 +9,7 @@ import {
     LOGIN_FAIL,
     LOGOUT,
 } from "./types";
+import { fetchProjects, clearProjects } from "./project";
 import { fetchTasks, clearTasks } from "./task";
 import setAuthToken from "../utils/setAuthToken";
 
@@ -26,6 +27,7 @@ export const loadUser = () => async dispatch => {
         });
 
         dispatch(fetchTasks());
+        dispatch(fetchProjects());
     } catch (err) {
         dispatch({
             type: AUTH_ERROR,
@@ -100,5 +102,6 @@ export const login = (email, password) => async dispatch => {
 // Logout / clear profile
 export const logout = () => dispatch => {
     dispatch(clearTasks());
+    dispatch(clearProjects());
     dispatch({ type: LOGOUT });
 };
