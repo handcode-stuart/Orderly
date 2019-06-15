@@ -5,9 +5,15 @@ import PropTypes from "prop-types";
 import { toggleNewTaskForm } from "../../actions/view";
 import "./NewTaskForm.scss";
 
-const NewTaskForm = ({ view: { new_task_form_open }, addTask, toggleNewTaskForm }) => {
+const NewTaskForm = ({
+    project: { projects },
+    view: { new_task_form_open },
+    addTask,
+    toggleNewTaskForm,
+}) => {
     const [taskData, setTaskData] = useState({
         body: "",
+        project_id: "",
     });
 
     const ref = createRef();
@@ -16,11 +22,13 @@ const NewTaskForm = ({ view: { new_task_form_open }, addTask, toggleNewTaskForm 
 
     const { body } = taskData;
 
-    const onChange = e => setTaskData({ body: e.target.value });
+    const onBodyChange = e => setTaskData({ ...taskData, body: e.target.value });
+
+    const onProjectChange = e => setTaskData({ ...taskData, project_id: e.target.value });
 
     const onSubmit = () => {
         addTask(taskData);
-        setTaskData({ body: "" });
+        setTaskData({ body: "", project_id: null });
         toggleNewTaskForm(new_task_form_open);
     };
 
@@ -31,9 +39,18 @@ const NewTaskForm = ({ view: { new_task_form_open }, addTask, toggleNewTaskForm 
                 ref={ref}
                 name='body'
                 value={body}
-                onChange={e => onChange(e)}
+                onChange={e => onBodyChange(e)}
                 placeholder='Your task...'
             />
+            <select name='project_id' onChange={e => onProjectChange(e)}>
+                <option value=''>None</option>
+                {projects &&
+                    projects.map(project => (
+                        <option key={project._id} value={project._id}>
+                            {project.name}
+                        </option>
+                    ))}
+            </select>
             <div className='new-task-form__actions'>
                 <span className='labels'>@</span>
                 <span className='priority'>!!!</span>
@@ -47,10 +64,12 @@ NewTaskForm.propTypes = {
     addTask: PropTypes.func.isRequired,
     toggleNewTaskForm: PropTypes.func.isRequired,
     view: PropTypes.object.isRequired,
+    project: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
     view: state.view,
+    project: state.project,
 });
 
 export default connect(

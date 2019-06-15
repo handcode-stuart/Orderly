@@ -106,10 +106,22 @@ router.post(
         if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
 
         try {
-            const newTask = new Task({
+            let project = false;
+
+            let newTask = new Task({
                 body: req.body.body,
                 user: req.user.id,
             });
+
+            if (req.body.project_id) {
+                project = await Project.findById(req.body.project_id);
+
+                if (project.user.toString() !== req.user.id.toString()) {
+                    return res.status(401).json({ msg: "User not authorised" });
+                }
+
+                newTask.project = req.body.project_id;
+            }
 
             const task = await newTask.save();
 
