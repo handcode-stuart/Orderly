@@ -4,10 +4,10 @@ import PropTypes from "prop-types";
 import { completeTask, deleteTask } from "../../actions/task";
 import "./TaskItem.scss";
 
-const TaskItem = ({ completeTask, deleteTask, task }) => {
+const TaskItem = ({ project: { projects }, completeTask, deleteTask, task }) => {
     const [taskData, setTaskData] = useState(task);
 
-    const { _id, body, completed } = taskData;
+    const { _id, body, completed, project } = taskData;
 
     const onCompleteClick = e => {
         completeTask(_id, !completed);
@@ -27,18 +27,26 @@ const TaskItem = ({ completeTask, deleteTask, task }) => {
             <div className='task-item__wrapper'>
                 <div className='task-item__form-group'>
                     <div className='task-item__completed-box'>
-                        <span
-                            onClick={e => onCompleteClick()}
-                            className={completed ? "checked" : ""}
-                        />
+                        <span className='circle' onClick={e => onCompleteClick()} />
                     </div>
-                    <p>{body}</p>
+                    <p>
+                        {body}
+                        <br />
+                        {project &&
+                            projects
+                                .filter(proj => proj._id === project)
+                                .map(proj => (
+                                    <span
+                                        className='project'
+                                        style={{ backgroundColor: proj.colour }}
+                                    >
+                                        {proj.name}
+                                    </span>
+                                ))}
+                    </p>
                 </div>
                 <div className='task-item__actions'>
-                    <span className='project' onClick={e => handleDeleteTask(e)} />
-                    <span className='labels' onClick={e => handleDeleteTask(e)} />
-                    <span className='edit' onClick={e => handleDeleteTask(e)} />
-                    <span className='delete' onClick={e => handleDeleteTask(e)} />
+                    <span className='circle  delete' onClick={e => handleDeleteTask(e)} />
                 </div>
             </div>
         </li>
@@ -47,11 +55,16 @@ const TaskItem = ({ completeTask, deleteTask, task }) => {
 
 TaskItem.propTypes = {
     task: PropTypes.object.isRequired,
+    project: PropTypes.object.isRequired,
     completeTask: PropTypes.func.isRequired,
     deleteTask: PropTypes.func.isRequired,
 };
 
+const mapStateToProps = state => ({
+    project: state.project,
+});
+
 export default connect(
-    null,
+    mapStateToProps,
     { completeTask, deleteTask },
 )(TaskItem);

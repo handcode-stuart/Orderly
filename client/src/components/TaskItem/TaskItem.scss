@@ -31,13 +31,22 @@
         }
 
         span {
-            width: 17px;
-            height: 17px;
-            border: 2px solid #f0f0f0;
-            border-radius: 100%;
+            &.circle {
+                width: 17px;
+                height: 17px;
+                border: 2px solid #f0f0f0;
+                border-radius: 100%;
 
-            &.checked {
-                background-color: #65a3d1;
+                &.checked {
+                    background-color: #65a3d1;
+                }
+            }
+
+            &.project {
+                padding: 2px;
+                border-radius: 2px;
+                margin-top: 5px;
+                display: inline-block;
             }
         }
 
@@ -56,15 +65,6 @@
             margin-right: 0;
             margin-left: 15px;
 
-            &.project {
-                border-color: #65a3d1;
-            }
-            &.labels {
-                border-color: #cbf4e4;
-            }
-            &.edit {
-                border-color: #f4b9b9;
-            }
             &.delete {
                 border-color: #ea4141;
             }
