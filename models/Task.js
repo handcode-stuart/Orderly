@@ -10,6 +10,10 @@ const TaskSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    project: {
+        type: Schema.Types.ObjectId,
+        ref: "projects",
+    },
     completed: {
         type: Boolean,
         default: false,

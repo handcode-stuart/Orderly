@@ -4,6 +4,7 @@ const auth = require("../../../middleware/auth");
 const { check, validationResult } = require("express-validator/check");
 
 const Task = require("../../../models/Task");
+const Project = require("../../../models/Project");
 
 /**
  * @route   GET /api/v1/tasks
@@ -41,10 +42,45 @@ router.get("/:id", auth, async (req, res) => {
 });
 
 /**
- * @route   GET /api/v1/tasks/{id}/project
+ * @route   PUT /api/v1/tasks/{id}/project
  * @desc
  * @access
  */
+router.put(
+    "/:id/project",
+    auth,
+    [
+        check("project_id", "A project is required")
+            .not()
+            .isEmpty(),
+    ],
+    async (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
+
+        try {
+            const task = await Task.findById(req.params.id);
+            const project = await Project.findById(req.body.project_id);
+
+            if (task.user.toString() !== req.user.id.toString()) {
+                return res.status(401).json({ msg: "User not authorised" });
+            }
+
+            if (project.user.toString() !== req.user.id.toString()) {
+                return res.status(401).json({ msg: "User not authorised" });
+            }
+
+            task.project = req.body.project_id;
+
+            await task.save();
+
+            return res.json(task);
+        } catch (err) {
+            console.error(err.message);
+            return res.status(500).send("Server error");
+        }
+    },
+);
 
 /**
  * @route   GET /api/v1/tasks/{id}/labels
