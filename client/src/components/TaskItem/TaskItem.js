@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { completeTask, deleteTask } from "../../actions/task";
 import "./TaskItem.scss";
@@ -7,7 +8,9 @@ import "./TaskItem.scss";
 const TaskItem = ({ project: { projects }, completeTask, deleteTask, task }) => {
     const [taskData, setTaskData] = useState(task);
 
-    const { _id, body, completed, project } = taskData;
+    const { _id, body, completed } = taskData;
+
+    const project = projects.find(proj => proj._id === taskData.project);
 
     const onCompleteClick = e => {
         completeTask(_id, !completed);
@@ -32,17 +35,16 @@ const TaskItem = ({ project: { projects }, completeTask, deleteTask, task }) => 
                     <p>
                         {body}
                         <br />
-                        {project &&
-                            projects
-                                .filter(proj => proj._id === project)
-                                .map(proj => (
-                                    <span
-                                        className='project'
-                                        style={{ backgroundColor: proj.colour }}
-                                    >
-                                        {proj.name}
-                                    </span>
-                                ))}
+                        {project && (
+                            <Link to={`/project/${project._id}`}>
+                                <span
+                                    className='project'
+                                    style={{ backgroundColor: project.colour }}
+                                >
+                                    {project.name}
+                                </span>
+                            </Link>
+                        )}
                     </p>
                 </div>
                 <div className='task-item__actions'>

@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 
 import AuthHome from "../pages/auth/AuthHome";
 import Projects from "../pages/auth/Projects";
+import Project from "../pages/auth/Project";
 import Labels from "../pages/auth/Labels";
 import Settings from "../pages/auth/Settings";
 import Completed from "../pages/auth/Completed";
@@ -21,6 +22,7 @@ const AuthApp = ({ view: { new_task_form_open } }) => {
             <Switch>
                 <Route exact path='/' component={AuthHome} />
                 <Route path='/projects' component={Projects} />
+                <Route path='/project/:id' component={Project} />
                 <Route path='/labels' component={Labels} />
                 <Route path='/completed' component={Completed} />
                 <Route path='/settings' component={Settings} />
