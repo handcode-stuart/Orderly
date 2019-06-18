@@ -6,7 +6,10 @@ import NoTasks from "../TaskItem/NoTasks";
 import "./TaskList.scss";
 
 const TaskList = ({ task: { tasks }, filter }) => {
-    // Current use case for multiple filters is OR, not AND
+    /**
+     * Current use case for multiple filters is OR, not AND
+     * e.g. <TaskList filter={[{ project: match.params.id }, { completed: false }]} />
+     */
     const filteredTasks = () => {
         let filteredTasks = [...tasks];
         filter.forEach(filter => {
