@@ -8,13 +8,13 @@ import "./TaskList.scss";
 const TaskList = ({ task: { tasks }, filter }) => {
     // Current use case for multiple filters is OR, not AND
     const filteredTasks = () => {
-        let filteredTasks = [];
+        let filteredTasks = [...tasks];
         filter.forEach(filter => {
             const key = Object.keys(filter)[0];
             const value = filter[key];
-            tasks.map(task => task[key] === value && filteredTasks.push(task));
+            filteredTasks = filteredTasks.filter(task => task[key] === value);
         });
-        return [...new Set(filteredTasks)];
+        return [...filteredTasks];
     };
 
     return (

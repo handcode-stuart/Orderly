@@ -8,7 +8,7 @@ const Project = ({ match, project: { projects } }) => {
     return (
         <div>
             <PageHeader title={currProject.name} />
-            <TaskList filter={[{ project: match.params.id }]} />
+            <TaskList filter={[{ project: match.params.id }, { completed: false }]} />
         </div>
     );
 };
