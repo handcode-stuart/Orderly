@@ -22,17 +22,19 @@ const TaskList = ({ task: { tasks }, filter }) => {
 
     return (
         <div>
-            {tasks.length > 0 ? (
-                <ul className='task-list'>
-                    {filter
-                        ? filteredTasks().map(task => <TaskItem key={task._id} task={task} />)
-                        : tasks.map(task => <TaskItem key={task._id} task={task} />)}
-                </ul>
-            ) : (
-                <ul className='task-list'>
+            <ul className='task-list'>
+                {filter ? (
+                    filteredTasks().length > 0 ? (
+                        filteredTasks().map(task => <TaskItem key={task._id} task={task} />)
+                    ) : (
+                        <NoTasks />
+                    )
+                ) : tasks.length > 0 ? (
+                    tasks.map(task => <TaskItem key={task._id} task={task} />)
+                ) : (
                     <NoTasks />
-                </ul>
-            )}
+                )}
+            </ul>
         </div>
     );
 };
