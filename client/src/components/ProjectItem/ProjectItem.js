@@ -5,7 +5,7 @@ import { deleteProject } from "../../actions/project";
 import "./ProjectItem.scss";
 
 const ProjectItem = ({ deleteProject, project }) => {
-    const [projectData, setProjectData] = useState(project);
+    const [projectData] = useState(project);
 
     const { _id, name, colour } = projectData;
 

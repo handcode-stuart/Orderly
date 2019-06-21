@@ -7,10 +7,11 @@ import "./TaskItem.scss";
 
 const TaskItem = ({ project: { projects }, completeTask, deleteTask, task }) => {
     const [taskData, setTaskData] = useState(task);
-
     const { _id, body, completed } = taskData;
 
     const project = projects.find(proj => proj._id === taskData.project);
+
+    const [isEditing, setIsEditing] = useState(false);
 
     const onCompleteClick = e => {
         completeTask(_id, !completed);
@@ -25,21 +26,25 @@ const TaskItem = ({ project: { projects }, completeTask, deleteTask, task }) => 
         deleteTask(_id);
     };
 
+    const handleClick = () => setIsEditing(!isEditing);
+
     return (
-        <li className='task-item'>
+        <li className='task-item' onClick={() => handleClick()}>
             <div className='task-item__wrapper'>
                 <div className='task-item__form-group'>
                     <div className='task-item__completed-box'>
                         <span className='circle' onClick={e => onCompleteClick()} />
                     </div>
-                    <p>
-                        {body}
-                        <br />
+                    <p>{body}</p>
+                    <p className='task-item__task-project'>
                         {project && (
                             <Link to={`/project/${project._id}`}>
                                 <span
                                     className='project'
-                                    style={{ backgroundColor: project.colour }}
+                                    style={{
+                                        color: project.colour,
+                                        borderColor: project.colour,
+                                    }}
                                 >
                                     {project.name}
                                 </span>
@@ -47,10 +52,18 @@ const TaskItem = ({ project: { projects }, completeTask, deleteTask, task }) => 
                         )}
                     </p>
                 </div>
-                <div className='task-item__actions'>
-                    <span className='circle  delete' onClick={e => handleDeleteTask(e)} />
-                </div>
             </div>
+            {isEditing && (
+                <div className='task-item__edit'>
+                    <span
+                        className='circle  delete'
+                        onClick={e =>
+                            window.confirm("Are you sure you want to delete this item?") &&
+                            handleDeleteTask(e)
+                        }
+                    />
+                </div>
+            )}
         </li>
     );
 };
