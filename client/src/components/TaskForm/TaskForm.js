@@ -72,7 +72,7 @@ const TaskForm = ({
                 <span className='labels'>@</span>
                 <span className='priority'>!!!</span>
             </div>
-            <button onClick={e => (current ? updateTaskSubmit() : newTaskSubmit())} />
+            <button onClick={() => (current ? updateTaskSubmit() : newTaskSubmit())} />
         </div>
     );
 };
