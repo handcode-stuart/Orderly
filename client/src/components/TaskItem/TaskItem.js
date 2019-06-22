@@ -15,17 +15,14 @@ const TaskItem = ({
     toggleTaskForm,
     setCurrentTask,
 }) => {
-    const [taskData, setTaskData] = useState(task);
-    const { _id, body, completed } = taskData;
+    const [taskCompleteStatus, setTaskCompleteStatus] = useState(task.completed);
+    const { _id, body } = task;
 
-    const project = projects.find(proj => proj._id === taskData.project);
+    const project = projects.find(proj => proj._id === task.project);
 
     const onCompleteClick = e => {
-        completeTask(_id, !completed);
-        setTaskData({
-            ...taskData,
-            completed: !completed,
-        });
+        completeTask(_id, !taskCompleteStatus);
+        setTaskCompleteStatus(!taskCompleteStatus);
     };
 
     const handleDeleteTask = e => {
