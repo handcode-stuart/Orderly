@@ -1,6 +1,7 @@
 import React, { useEffect, useState, createRef } from "react";
 import { connect } from "react-redux";
 import { addTask, clearCurrentTask, updateTask } from "../../actions/task";
+import { ReactComponent as AddTaskButtonImage } from "./add-task-button.svg";
 import PropTypes from "prop-types";
 import { toggleTaskForm } from "../../actions/view";
 import "./TaskForm.scss";
@@ -72,7 +73,10 @@ const TaskForm = ({
                 <span className='labels'>@</span>
                 <span className='priority'>!!!</span>
             </div>
-            <button onClick={() => (current ? updateTaskSubmit() : newTaskSubmit())} />
+            <AddTaskButtonImage
+                className='task-form__add-task-btn'
+                onClick={() => (current ? updateTaskSubmit() : newTaskSubmit())}
+            />
         </div>
     );
 };

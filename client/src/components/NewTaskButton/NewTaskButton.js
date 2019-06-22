@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { clearCurrentTask } from "../../actions/task";
 import { toggleTaskForm } from "../../actions/view";
 import PropTypes from "prop-types";
+import { ReactComponent as NewTaskButtonImg } from "./new-task-button.svg";
 
 const NewTaskButton = ({ view: { task_form_open }, toggleTaskForm, clearCurrentTask }) => {
     const handleClick = () => {
@@ -12,7 +13,7 @@ const NewTaskButton = ({ view: { task_form_open }, toggleTaskForm, clearCurrentT
     };
 
     return (
-        <div
+        <NewTaskButtonImg
             className={task_form_open ? "new-task-button  active" : "new-task-button"}
             onClick={() => handleClick()}
         />
