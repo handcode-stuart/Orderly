@@ -10,6 +10,8 @@ import {
     DELETE_TASK_ERROR,
     SET_CURRENT_TASK,
     CLEAR_CURRENT_TASK,
+    UPDATE_TASK,
+    UPDATE_TASK_ERROR,
 } from "../actions/types";
 
 const initialState = {
@@ -62,8 +64,20 @@ export default function(state = initialState, action) {
                 ...state,
                 current: null,
             };
+        case UPDATE_TASK:
+            return {
+                ...state,
+                tasks: state.tasks.map(task => {
+                    if (task._id === payload._id) {
+                        return payload;
+                    } else {
+                        return task;
+                    }
+                }),
+            };
         case FETCH_TASKS_ERROR:
         case ADD_TASK_ERROR:
+        case UPDATE_TASK_ERROR:
         case COMPLETE_TASK_ERROR:
         case DELETE_TASK_ERROR:
         default:

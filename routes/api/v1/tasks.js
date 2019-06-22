@@ -202,6 +202,7 @@ router.put(
             }
 
             task.body = req.body.body;
+            task.project = req.body.project_id;
 
             const updatedTask = await task.save();
 

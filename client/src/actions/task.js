@@ -10,6 +10,8 @@ import {
     DELETE_TASK_ERROR,
     SET_CURRENT_TASK,
     CLEAR_CURRENT_TASK,
+    UPDATE_TASK,
+    UPDATE_TASK_ERROR,
 } from "./types";
 import axios from "axios";
 
@@ -99,3 +101,24 @@ export const setCurrentTask = task => ({
 export const clearCurrentTask = () => ({
     type: CLEAR_CURRENT_TASK,
 });
+
+export const updateTask = task => async dispatch => {
+    const config = {
+        headers: {
+            "Content-Type": "application/json",
+        },
+    };
+
+    try {
+        const res = await axios.put(`/api/v1/tasks/${task.id}`, task, config);
+
+        dispatch({
+            type: UPDATE_TASK,
+            payload: res.data,
+        });
+    } catch (err) {
+        dispatch({
+            type: UPDATE_TASK_ERROR,
+        });
+    }
+};

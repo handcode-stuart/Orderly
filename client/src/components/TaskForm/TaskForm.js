@@ -1,6 +1,6 @@
 import React, { useEffect, useState, createRef } from "react";
 import { connect } from "react-redux";
-import { addTask } from "../../actions/task";
+import { addTask, clearCurrentTask, updateTask } from "../../actions/task";
 import PropTypes from "prop-types";
 import { toggleTaskForm } from "../../actions/view";
 import "./TaskForm.scss";
@@ -11,6 +11,8 @@ const TaskForm = ({
     view: { task_form_open },
     addTask,
     toggleTaskForm,
+    clearCurrentTask,
+    updateTask,
 }) => {
     const [taskData, setTaskData] = useState({
         body: current ? current.body : "",
@@ -27,9 +29,19 @@ const TaskForm = ({
 
     const onProjectChange = e => setTaskData({ ...taskData, project_id: e.target.value });
 
-    const onSubmit = () => {
+    const newTaskSubmit = () => {
         addTask(taskData);
         setTaskData({ body: "", project_id: null });
+        toggleTaskForm(task_form_open);
+    };
+
+    const updateTaskSubmit = () => {
+        updateTask({
+            id: current._id,
+            ...taskData,
+        });
+        setTaskData({ body: "", project_id: null });
+        clearCurrentTask();
         toggleTaskForm(task_form_open);
     };
 
@@ -43,15 +55,15 @@ const TaskForm = ({
                 onChange={e => onBodyChange(e)}
                 placeholder='Your task...'
             />
-            <select name='project_id' onChange={e => onProjectChange(e)}>
+            <select
+                name='project_id'
+                onChange={e => onProjectChange(e)}
+                defaultValue={current ? project_id : null}
+            >
                 <option value=''>None</option>
                 {projects &&
                     projects.map(project => (
-                        <option
-                            key={project._id}
-                            value={project._id}
-                            selected={project._id === project_id ? "selected" : null}
-                        >
+                        <option key={project._id} value={project._id}>
                             {project.name}
                         </option>
                     ))}
@@ -60,7 +72,7 @@ const TaskForm = ({
                 <span className='labels'>@</span>
                 <span className='priority'>!!!</span>
             </div>
-            <button onClick={e => onSubmit()} />
+            <button onClick={e => (current ? updateTaskSubmit() : newTaskSubmit())} />
         </div>
     );
 };
@@ -68,6 +80,8 @@ const TaskForm = ({
 TaskForm.propTypes = {
     addTask: PropTypes.func.isRequired,
     toggleTaskForm: PropTypes.func.isRequired,
+    clearCurrentTask: PropTypes.func.isRequired,
+    updateTask: PropTypes.func.isRequired,
     view: PropTypes.object.isRequired,
     project: PropTypes.object.isRequired,
     task: PropTypes.object.isRequired,
@@ -81,5 +95,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { addTask, toggleTaskForm },
+    { addTask, toggleTaskForm, clearCurrentTask, updateTask },
 )(TaskForm);

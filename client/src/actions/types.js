@@ -21,6 +21,8 @@ export const DELETE_TASK = "DELETE_TASK";
 export const DELETE_TASK_ERROR = "DELETE_TASK_ERROR";
 export const SET_CURRENT_TASK = "SET_CURRENT_TASK";
 export const CLEAR_CURRENT_TASK = "CLEAR_CURRENT_TASK";
+export const UPDATE_TASK = "UPDATE_TASK";
+export const UPDATE_TASK_ERROR = "UPDATE_TASK_ERROR";
 
 // View
 export const OPEN_SIDEBAR = "OPEN_SIDEBAR";
