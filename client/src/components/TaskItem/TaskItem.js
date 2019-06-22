@@ -39,13 +39,13 @@ const TaskItem = ({
     };
 
     return (
-        <li className='task-item' onClick={() => handleTaskClick()}>
+        <li className='task-item'>
             <div className='task-item__wrapper'>
                 <div className='task-item__form-group'>
                     <div className='task-item__completed-box'>
                         <span className='circle' onClick={() => onCompleteClick()} />
                     </div>
-                    <p>{body}</p>
+                    <p onClick={() => handleTaskClick()}>{body}</p>
                     <p className='task-item__task-project'>
                         {project ? (
                             <Link to={`/project/${project._id}`}>
