@@ -7,7 +7,7 @@ const Project = ({ match, project: { projects } }) => {
     const currProject = projects.find(project => project._id === match.params.id);
     return (
         <div>
-            <PageHeader title={currProject.name} />
+            <PageHeader color={currProject.color} title={currProject.name} />
             <TaskList filter={[{ project: match.params.id }, { completed: false }]} />
         </div>
     );

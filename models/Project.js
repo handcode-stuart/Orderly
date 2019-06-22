@@ -12,7 +12,7 @@ const ProjectSchema = new mongoose.Schema({
     },
     color: {
         type: String,
-        default: "grey",
+        default: "#959595",
     },
 });
 
