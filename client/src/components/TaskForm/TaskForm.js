@@ -12,17 +12,10 @@ const TaskForm = ({
     addTask,
     toggleTaskForm,
 }) => {
-    const [taskData, setTaskData] = useState(
-        current
-            ? {
-                  body: current.body,
-                  project_id: current.project,
-              }
-            : {
-                  body: "",
-                  project_id: null,
-              },
-    );
+    const [taskData, setTaskData] = useState({
+        body: current ? current.body : "",
+        project_id: current ? current.project : null,
+    });
 
     const ref = createRef();
 
