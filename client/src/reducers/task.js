@@ -8,10 +8,13 @@ import {
     COMPLETE_TASK_ERROR,
     DELETE_TASK,
     DELETE_TASK_ERROR,
+    SET_CURRENT_TASK,
+    CLEAR_CURRENT_TASK,
 } from "../actions/types";
 
 const initialState = {
     tasks: [],
+    current: null,
 };
 
 export default function(state = initialState, action) {
@@ -48,6 +51,16 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 tasks: state.tasks.filter(task => task._id !== payload),
+            };
+        case SET_CURRENT_TASK:
+            return {
+                ...state,
+                current: payload,
+            };
+        case CLEAR_CURRENT_TASK:
+            return {
+                ...state,
+                current: null,
             };
         case FETCH_TASKS_ERROR:
         case ADD_TASK_ERROR:

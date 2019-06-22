@@ -2,16 +2,23 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import { completeTask, deleteTask } from "../../actions/task";
+import { toggleTaskForm } from "../../actions/view";
+import { completeTask, deleteTask, setCurrentTask } from "../../actions/task";
 import "./TaskItem.scss";
 
-const TaskItem = ({ project: { projects }, completeTask, deleteTask, task }) => {
+const TaskItem = ({
+    project: { projects },
+    view: { task_form_open },
+    completeTask,
+    deleteTask,
+    task,
+    toggleTaskForm,
+    setCurrentTask,
+}) => {
     const [taskData, setTaskData] = useState(task);
     const { _id, body, completed } = taskData;
 
     const project = projects.find(proj => proj._id === taskData.project);
-
-    const [isEditing, setIsEditing] = useState(false);
 
     const onCompleteClick = e => {
         completeTask(_id, !completed);
@@ -26,18 +33,24 @@ const TaskItem = ({ project: { projects }, completeTask, deleteTask, task }) => 
         deleteTask(_id);
     };
 
-    const handleClick = () => setIsEditing(!isEditing);
+    const handleTaskClick = () => {
+        // Set current task
+        setCurrentTask(task);
+
+        // Open task edit overlay
+        toggleTaskForm(task_form_open);
+    };
 
     return (
-        <li className='task-item' onClick={() => handleClick()}>
+        <li className='task-item' onClick={() => handleTaskClick()}>
             <div className='task-item__wrapper'>
                 <div className='task-item__form-group'>
                     <div className='task-item__completed-box'>
-                        <span className='circle' onClick={e => onCompleteClick()} />
+                        <span className='circle' onClick={() => onCompleteClick()} />
                     </div>
                     <p>{body}</p>
                     <p className='task-item__task-project'>
-                        {project && (
+                        {project ? (
                             <Link to={`/project/${project._id}`}>
                                 <span
                                     className='project'
@@ -49,21 +62,22 @@ const TaskItem = ({ project: { projects }, completeTask, deleteTask, task }) => 
                                     {project.name}
                                 </span>
                             </Link>
+                        ) : (
+                            <Link to={`/project/inbox`}>
+                                <span
+                                    className='project'
+                                    style={{
+                                        color: "#FFF",
+                                        borderColor: "#FFF",
+                                    }}
+                                >
+                                    Inbox
+                                </span>
+                            </Link>
                         )}
                     </p>
                 </div>
             </div>
-            {isEditing && (
-                <div className='task-item__edit'>
-                    <span
-                        className='circle  delete'
-                        onClick={e =>
-                            window.confirm("Are you sure you want to delete this item?") &&
-                            handleDeleteTask(e)
-                        }
-                    />
-                </div>
-            )}
         </li>
     );
 };
@@ -73,13 +87,16 @@ TaskItem.propTypes = {
     project: PropTypes.object.isRequired,
     completeTask: PropTypes.func.isRequired,
     deleteTask: PropTypes.func.isRequired,
+    toggleTaskForm: PropTypes.func.isRequired,
+    view: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
     project: state.project,
+    view: state.view,
 });
 
 export default connect(
     mapStateToProps,
-    { completeTask, deleteTask },
+    { completeTask, deleteTask, toggleTaskForm, setCurrentTask },
 )(TaskItem);

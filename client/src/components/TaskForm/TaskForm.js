@@ -5,17 +5,30 @@ import PropTypes from "prop-types";
 import { toggleTaskForm } from "../../actions/view";
 import "./TaskForm.scss";
 
-const TaskForm = ({ project: { projects }, view: { task_form_open }, addTask, toggleTaskForm }) => {
-    const [taskData, setTaskData] = useState({
-        body: "",
-        project_id: "",
-    });
+const TaskForm = ({
+    task: { current },
+    project: { projects },
+    view: { task_form_open },
+    addTask,
+    toggleTaskForm,
+}) => {
+    const [taskData, setTaskData] = useState(
+        current
+            ? {
+                  body: current.body,
+                  project_id: current.project,
+              }
+            : {
+                  body: "",
+                  project_id: null,
+              },
+    );
 
     const ref = createRef();
 
     useEffect(() => ref.current.focus(), [ref]);
 
-    const { body } = taskData;
+    const { body, project_id } = taskData;
 
     const onBodyChange = e => setTaskData({ ...taskData, body: e.target.value });
 
@@ -41,7 +54,11 @@ const TaskForm = ({ project: { projects }, view: { task_form_open }, addTask, to
                 <option value=''>None</option>
                 {projects &&
                     projects.map(project => (
-                        <option key={project._id} value={project._id}>
+                        <option
+                            key={project._id}
+                            value={project._id}
+                            selected={project._id === project_id ? "selected" : null}
+                        >
                             {project.name}
                         </option>
                     ))}
@@ -60,11 +77,13 @@ TaskForm.propTypes = {
     toggleTaskForm: PropTypes.func.isRequired,
     view: PropTypes.object.isRequired,
     project: PropTypes.object.isRequired,
+    task: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
     view: state.view,
     project: state.project,
+    task: state.task,
 });
 
 export default connect(

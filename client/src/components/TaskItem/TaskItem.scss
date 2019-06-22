@@ -36,6 +36,11 @@
             padding: 3px 4px;
             border-radius: 4px;
             margin-top: 4px;
+            margin-left: 12px;
+        }
+
+        &.delete {
+            border-color: #ea4141;
         }
     }
 
@@ -62,24 +67,6 @@
         p {
             font-size: 14px;
             color: #f0f0f0;
-        }
-    }
-
-    &__edit {
-        background-color: #434455;
-        padding: 7px 0;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-
-        .task-item:nth-child(even) & {
-            background-color: #3e3f4e;
-        }
-
-        span {
-            &.delete {
-                border-color: #ea4141;
-            }
         }
     }
 }

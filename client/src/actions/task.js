@@ -8,6 +8,8 @@ import {
     COMPLETE_TASK_ERROR,
     DELETE_TASK,
     DELETE_TASK_ERROR,
+    SET_CURRENT_TASK,
+    CLEAR_CURRENT_TASK,
 } from "./types";
 import axios from "axios";
 
@@ -88,3 +90,12 @@ export const deleteTask = id => async dispatch => {
         });
     }
 };
+
+export const setCurrentTask = task => ({
+    type: SET_CURRENT_TASK,
+    payload: task,
+});
+
+export const clearCurrentTask = () => ({
+    type: CLEAR_CURRENT_TASK,
+});

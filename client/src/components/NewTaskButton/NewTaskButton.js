@@ -8,7 +8,7 @@ const NewTaskButton = ({ view: { task_form_open }, toggleTaskForm }) => {
     return (
         <div
             className={task_form_open ? "new-task-button  active" : "new-task-button"}
-            onClick={e => toggleTaskForm(task_form_open)}
+            onClick={() => toggleTaskForm(task_form_open)}
         />
     );
 };
