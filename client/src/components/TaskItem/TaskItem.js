@@ -3,14 +3,13 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { toggleTaskForm } from "../../actions/view";
-import { completeTask, deleteTask, setCurrentTask } from "../../actions/task";
+import { completeTask, setCurrentTask } from "../../actions/task";
 import "./TaskItem.scss";
 
 const TaskItem = ({
     project: { projects },
     view: { task_form_open },
     completeTask,
-    deleteTask,
     task,
     toggleTaskForm,
     setCurrentTask,
@@ -23,11 +22,6 @@ const TaskItem = ({
     const onCompleteClick = e => {
         completeTask(_id, !taskCompleteStatus);
         setTaskCompleteStatus(!taskCompleteStatus);
-    };
-
-    const handleDeleteTask = e => {
-        e.preventDefault();
-        deleteTask(_id);
     };
 
     const handleTaskClick = () => {
@@ -83,7 +77,6 @@ TaskItem.propTypes = {
     task: PropTypes.object.isRequired,
     project: PropTypes.object.isRequired,
     completeTask: PropTypes.func.isRequired,
-    deleteTask: PropTypes.func.isRequired,
     toggleTaskForm: PropTypes.func.isRequired,
     view: PropTypes.object.isRequired,
 };
@@ -95,5 +88,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { completeTask, deleteTask, toggleTaskForm, setCurrentTask },
+    { completeTask, toggleTaskForm, setCurrentTask },
 )(TaskItem);

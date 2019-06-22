@@ -1,6 +1,6 @@
 import React, { useEffect, useState, createRef } from "react";
 import { connect } from "react-redux";
-import { addTask, clearCurrentTask, updateTask } from "../../actions/task";
+import { addTask, clearCurrentTask, updateTask, deleteTask } from "../../actions/task";
 import { ReactComponent as AddTaskButtonImage } from "./add-task-button.svg";
 import PropTypes from "prop-types";
 import { toggleTaskForm } from "../../actions/view";
@@ -14,6 +14,7 @@ const TaskForm = ({
     toggleTaskForm,
     clearCurrentTask,
     updateTask,
+    deleteTask,
 }) => {
     const [taskData, setTaskData] = useState({
         body: current ? current.body : "",
@@ -46,6 +47,12 @@ const TaskForm = ({
         toggleTaskForm(task_form_open);
     };
 
+    const handleDeleteTask = () => {
+        clearCurrentTask();
+        toggleTaskForm(task_form_open);
+        deleteTask(current._id);
+    };
+
     return (
         <div className={task_form_open ? "task-form  active" : "task-form"}>
             <div className='task-form__bg' />
@@ -73,6 +80,16 @@ const TaskForm = ({
                 <span className='labels'>@</span>
                 <span className='priority'>!!!</span>
             </div>
+            {current && (
+                <button
+                    onClick={() =>
+                        window.confirm("Are you sure you want to delete this task?") &&
+                        handleDeleteTask()
+                    }
+                >
+                    Delete task
+                </button>
+            )}
             <AddTaskButtonImage
                 className='task-form__add-task-btn'
                 onClick={() => (current ? updateTaskSubmit() : newTaskSubmit())}
@@ -86,6 +103,7 @@ TaskForm.propTypes = {
     toggleTaskForm: PropTypes.func.isRequired,
     clearCurrentTask: PropTypes.func.isRequired,
     updateTask: PropTypes.func.isRequired,
+    deleteTask: PropTypes.func.isRequired,
     view: PropTypes.object.isRequired,
     project: PropTypes.object.isRequired,
     task: PropTypes.object.isRequired,
@@ -99,5 +117,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { addTask, toggleTaskForm, clearCurrentTask, updateTask },
+    { addTask, toggleTaskForm, clearCurrentTask, updateTask, deleteTask },
 )(TaskForm);
