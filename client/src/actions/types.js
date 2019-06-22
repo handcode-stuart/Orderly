@@ -23,8 +23,8 @@ export const DELETE_TASK_ERROR = "DELETE_TASK_ERROR";
 // View
 export const OPEN_SIDEBAR = "OPEN_SIDEBAR";
 export const CLOSE_SIDEBAR = "CLOSE_SIDEBAR";
-export const OPEN_NEW_TASK_FORM = "OPEN_NEW_TASK_FORM";
-export const CLOSE_NEW_TASK_FORM = "CLOSE_NEW_TASK_FORM";
+export const OPEN_TASK_FORM = "OPEN_TASK_FORM";
+export const CLOSE_TASK_FORM = "CLOSE_TASK_FORM";
 
 // Projects
 export const ADD_PROJECT = "ADD_PROJECT";

@@ -2,15 +2,10 @@ import React, { useEffect, useState, createRef } from "react";
 import { connect } from "react-redux";
 import { addTask } from "../../actions/task";
 import PropTypes from "prop-types";
-import { toggleNewTaskForm } from "../../actions/view";
-import "./NewTaskForm.scss";
+import { toggleTaskForm } from "../../actions/view";
+import "./TaskForm.scss";
 
-const NewTaskForm = ({
-    project: { projects },
-    view: { new_task_form_open },
-    addTask,
-    toggleNewTaskForm,
-}) => {
+const TaskForm = ({ project: { projects }, view: { task_form_open }, addTask, toggleTaskForm }) => {
     const [taskData, setTaskData] = useState({
         body: "",
         project_id: "",
@@ -29,12 +24,12 @@ const NewTaskForm = ({
     const onSubmit = () => {
         addTask(taskData);
         setTaskData({ body: "", project_id: null });
-        toggleNewTaskForm(new_task_form_open);
+        toggleTaskForm(task_form_open);
     };
 
     return (
-        <div className={new_task_form_open ? "new-task-form  active" : "new-task-form"}>
-            <div className='new-task-form__bg' />
+        <div className={task_form_open ? "task-form  active" : "task-form"}>
+            <div className='task-form__bg' />
             <textarea
                 ref={ref}
                 name='body'
@@ -51,7 +46,7 @@ const NewTaskForm = ({
                         </option>
                     ))}
             </select>
-            <div className='new-task-form__actions'>
+            <div className='task-form__actions'>
                 <span className='labels'>@</span>
                 <span className='priority'>!!!</span>
             </div>
@@ -60,9 +55,9 @@ const NewTaskForm = ({
     );
 };
 
-NewTaskForm.propTypes = {
+TaskForm.propTypes = {
     addTask: PropTypes.func.isRequired,
-    toggleNewTaskForm: PropTypes.func.isRequired,
+    toggleTaskForm: PropTypes.func.isRequired,
     view: PropTypes.object.isRequired,
     project: PropTypes.object.isRequired,
 };
@@ -74,5 +69,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { addTask, toggleNewTaskForm },
-)(NewTaskForm);
+    { addTask, toggleTaskForm },
+)(TaskForm);

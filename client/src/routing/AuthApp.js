@@ -11,10 +11,10 @@ import Settings from "../pages/auth/Settings";
 import Completed from "../pages/auth/Completed";
 import Sidebar from "../components/Sidebar/Sidebar";
 import AuthNav from "../components/nav/AuthNav";
-import NewTaskForm from "../components/NewTaskForm/NewTaskForm";
+import TaskForm from "../components/TaskForm/TaskForm";
 import NewTaskButton from "../components/NewTaskButton/NewTaskButton";
 
-const AuthApp = ({ view: { new_task_form_open } }) => {
+const AuthApp = ({ view: { task_form_open } }) => {
     return (
         <Fragment>
             <AuthNav />
@@ -28,7 +28,7 @@ const AuthApp = ({ view: { new_task_form_open } }) => {
                 <Route path='/settings' component={Settings} />
                 <Route render={() => <Redirect to='/' />} />
             </Switch>
-            {new_task_form_open && <NewTaskForm />}
+            {task_form_open && <TaskForm />}
             <NewTaskButton />
         </Fragment>
     );
