@@ -60,6 +60,7 @@ router.post(
         try {
             const newProject = new Project({
                 name: req.body.name,
+                color: req.body.color,
                 user: req.user.id,
             });
 

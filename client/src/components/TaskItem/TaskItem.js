@@ -46,8 +46,8 @@ const TaskItem = ({
                                 <span
                                     className='project'
                                     style={{
-                                        color: project.colour,
-                                        borderColor: project.colour,
+                                        color: project.color,
+                                        borderColor: project.color,
                                     }}
                                 >
                                     {project.name}

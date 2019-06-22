@@ -10,9 +10,9 @@ const ProjectSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    colour: {
+    color: {
         type: String,
-        default: "#CBF4E4",
+        default: "grey",
     },
 });
 
